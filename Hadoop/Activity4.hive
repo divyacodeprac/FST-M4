@@ -1,0 +1,77 @@
+hive> CREATE TABLE files(line STRING);
+OK
+Time taken: 5.017 seconds
+hive> show tables;
+OK
+files
+Time taken: 0.071 seconds, Fetched: 1 row(s)
+hive> LOAD DATA LOCAL '/user/root/input.txt' INTO TABLE files;
+FAILED: ParseException line 1:16 missing INPATH at ''/user/root/input.txt'' near '<EOF>'
+hive> LOAD DATA LOCAL '/root/input.txt' INTO TABLE files;
+FAILED: ParseException line 1:16 missing INPATH at ''/root/input.txt'' near '<EOF>'
+hive> LOAD DATA LOCAL INPATH '/user/root/input.txt' INTO TABLE files;
+FAILED: SemanticException Line 1:23 Invalid path ''/user/root/input.txt'': No files matching path file:/user/root/input.txt
+hive> LOAD DATA LOCAL INPATH '/root/input.txt' INTO TABLE files;
+Loading data to table default.files
+OK
+Time taken: 11.589 seconds
+hive> show tables;
+OK
+files
+Time taken: 0.045 seconds, Fetched: 1 row(s)
+hive> CREATE TABLE word_counts AS
+    > SELECT word,count(1) AS count FROM
+    > (SELECT explode(split(line,' ')) AS word FROM files) w
+    > GROUP BY word
+    > ORDER BY word;
+Query ID = root_20221121175733_7eb2a0b4-24dd-40b2-aca8-7ad49465a90e
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669051327170_0001, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669051327170_0001/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669051327170_0001
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-21 18:05:11,659 Stage-1 map = 0%,  reduce = 0%
+2022-11-21 18:06:12,235 Stage-1 map = 0%,  reduce = 0%
+2022-11-21 18:07:12,277 Stage-1 map = 0%,  reduce = 0%
+2022-11-21 18:07:48,205 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 65.27 sec
+2022-11-21 18:08:14,061 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 69.43 sec
+MapReduce Total cumulative CPU time: 1 minutes 9 seconds 430 msec
+Ended Job = job_1669051327170_0001
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669051327170_0002, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669051327170_0002/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669051327170_0002
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-21 18:08:50,742 Stage-2 map = 0%,  reduce = 0%
+2022-11-21 18:09:40,966 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 21.38 sec
+2022-11-21 18:09:52,599 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 27.55 sec
+MapReduce Total cumulative CPU time: 27 seconds 550 msec
+Ended Job = job_1669051327170_0002
+Moving data to directory hdfs://f5350e5fcdfc:9000/user/hive/warehouse/word_counts
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 69.43 sec   HDFS Read: 8169 HDFS Write: 166 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 27.55 sec   HDFS Read: 7297 HDFS Write: 97 SUCCESS
+Total MapReduce CPU Time Spent: 1 minutes 36 seconds 980 msec
+OK
+Time taken: 757.29 seconds
+hive> SELECT *FROM word_count;
+FAILED: SemanticException [Error 10001]: Line 1:13 Table not found 'word_count'
+hive> SELECT *FROM word_counts;
+OK
+Bye     1
+Hello   1
+World   2
+Time taken: 3.445 seconds, Fetched: 3 row(s)
