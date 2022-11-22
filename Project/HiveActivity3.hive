@@ -1,0 +1,280 @@
+hive> CREATE TABLE episodeVI ( name STRING , line STRING)
+    > ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+    > TBLPROPERTIES ("skip.header.line.count"="2");
+OK
+Time taken: 5.489 seconds
+hive> show tables;
+OK
+episodeiv
+episodev
+episodevi
+files
+word_counts
+Time taken: 0.316 seconds, Fetched: 5 row(s)
+hive> LOAD DATA LOCAL INPATH '/root/episode6.txt' INTO TABLE episodeVI;
+Loading data to table default.episodevi
+OK
+Time taken: 8.698 seconds
+hive> SELECT name,COUNT(name) AS no_of_lines from episodeVI GROUP BY name ORDER BY no_of_lines;
+Query ID = root_20221122185459_ba862455-b53f-45cc-9dd5-05afabd78883
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0013, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0013/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0013
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-22 18:55:24,485 Stage-1 map = 0%,  reduce = 0%
+2022-11-22 18:55:49,549 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.66 sec
+2022-11-22 18:56:05,086 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 8.46 sec
+MapReduce Total cumulative CPU time: 8 seconds 460 msec
+Ended Job = job_1669135567576_0013
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0014, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0014/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0014
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-22 18:56:48,285 Stage-2 map = 0%,  reduce = 0%
+2022-11-22 18:56:59,694 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.65 sec
+2022-11-22 18:57:14,470 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 5.09 sec
+MapReduce Total cumulative CPU time: 5 seconds 90 msec
+Ended Job = job_1669135567576_0014
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 8.46 sec   HDFS Read: 55753 HDFS Write: 4792 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 5.09 sec   HDFS Read: 12312 HDFS Write: 4253 SUCCESS
+Total MapReduce CPU Time Spent: 13 seconds 550 msec
+OK
+YODA (tickled, chuckles)        1
+YODA (shakes his head)  1
+YODA (gathering all his strength)       1
+Y-WING PILOT    1
+WEDGE (VO)      1
+WALKER PILOT #1 1
+VOICE (OS)      1
+VADER (turning to face him)     1
+VADER (skeptical)       1
+VADER (indicating lightsaber)   1
+VADER (bows)    1
+VADER (after a beat)    1
+VADER (a whisper)       1
+THREEPIO (to Wicket)    1
+THREEPIO (to Artoo)     1
+THREEPIO (still shaken) 1
+THREEPIO (instantly)    1
+THREEPIO (disappearing) 1
+THREEPIO (cont) 1
+STRANGE VOICE   1
+STORMTROOPER (OS)       1
+SECOND COMMANDER        1
+SCOUT #l        1
+SCOUT #2        1
+SCOUT   1
+RED TWO 1
+RED THREE       1
+RED LEADER (VO) 1
+PILOT VOICE (HAN)(filtered)     1
+PILOT #2        1
+PILOT   1
+PIETT (surprised)       1
+PIETT (into comlink)    1
+OPERATOR        1
+OOLA    1
+OFFICER 1
+NINEDENINE (to a Gamorrean guard)       1
+NAVIGATOR       1
+MON MOTHMA (cont)       1
+LURE    1
+LUKE (with sadness)     1
+LUKE (turning away, derisive)   1
+LUKE (to Leia)  1
+LUKE (shrugging it off) 1
+LUKE (sarcastic)        1
+LUKE (pointing to the controls) 1
+LUKE (moving to his ship)       1
+LUKE (indicating the one ahead) 1
+LUKE (hesitant) 1
+LUKE (groans)   1
+LUKE (cont)     1
+LUKE (concerned)        1
+LEIA (to Han)   1
+LEIA (softly)   1
+LEIA (over comlink)     1
+LEIA (into comlink)     1
+LEIA (alarmed)  1
+LANDO (to himself)      1
+LANDO (smiling) 1
+LANDO (over comlink)    1
+LANDO (into comlink)    1
+LANDO (desperately)     1
+JERJERROD (aghast)      1
+JABBA (cont Huttese subtitled)  1
+HAN/PILOT (VO)  1
+HAN and LUKE    1
+HAN (with self-confident grin)  1
+HAN (whispering to himself)     1
+HAN (turning to Luke)   1
+HAN (to Luke)   1
+HAN (to Leia)   1
+HAN (smiles)    1
+HAN (sighs)     1
+HAN (sarcastic) 1
+HAN (over comlink)      1
+HAN (loses his temper)  1
+HAN (looks at him warmly)       1
+HAN (grins)     1
+HAN (gravely)   1
+HAN (chuckles)  1
+HAN (blinking)  1
+HAN (angry)     1
+HAN (OS)        1
+GREEN LEADER    1
+GRAY LEADER     1
+EMPEROR (very cool)     1
+EMPEROR (to Vader)      1
+EMPEROR (to Luke)       1
+EMPEROR (no surprise)   1
+EMPEROR (laughs)        1
+EMPEROR (laughing)      1
+EMPEROR (cont)  1
+EMPEROR (angry) 1
+DEATH STAR CONTROLLER(filtered VO)      1
+CONTROLLER (filtered)   1
+CONTROL ROOM COMMANDER  1
+BUNKER COMMANDER        1
+BIB (in Huttese subtitled)      1
+BEN (grinning at Luke's indignation)    1
+BEN (continuing his narrative)  1
+BEN (attempting to give solace with his words)  1
+BEN (OS)        1
+ANAKIN (very weak)      1
+ANAKIN  1
+ACKBAR (cont)   1
+GENERAL MADINE  2
+CONTROLLER (over radio) 2
+ACKBAR (VO)     2
+BOUSHH (in Ubese subtitled)     2
+CONTROLLER      2
+MON MOTHMA      2
+GUARD   2
+SHUTTLE CAPTAIN 2
+SCOUT #1        2
+HAN (cont)      3
+REBEL PILOT     3
+JABBA   4
+BIB     5
+BOUSHH  5
+NINEDENINE      5
+STORMTROOPER    5
+JERJERROD       6
+PIETT   6
+COMMANDER       7
+YODA    10
+WEDGE   10
+ACKBAR  11
+BEN     14
+JABBA (in Huttese subtitled)    15
+EMPEROR 31
+LANDO   35
+VADER   37
+LEIA    51
+THREEPIO        84
+LUKE    100
+HAN     104
+Time taken: 147.832 seconds, Fetched: 136 row(s)
+hive> INSERT OVERWRITE DIRECTORY '/user/root/outputs/export' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+    > SELECT name,COUNT(name) AS no_of_lines from episodeVI GROUP BY name ORDER BY no_of_lines;
+Query ID = root_20221122185908_29aabbb3-a939-450d-91aa-5422a980b4c9
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0015, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0015/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0015
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-22 18:59:40,211 Stage-1 map = 0%,  reduce = 0%
+2022-11-22 18:59:53,701 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 4.71 sec
+2022-11-22 19:00:12,834 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 7.93 sec
+MapReduce Total cumulative CPU time: 7 seconds 930 msec
+Ended Job = job_1669135567576_0015
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0016, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0016/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0016
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-22 19:01:00,541 Stage-2 map = 0%,  reduce = 0%
+2022-11-22 19:01:05,830 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.02 sec
+2022-11-22 19:01:14,238 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 4.87 sec
+MapReduce Total cumulative CPU time: 4 seconds 870 msec
+Ended Job = job_1669135567576_0016
+Moving data to directory /user/root/outputs/export
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 7.93 sec   HDFS Read: 55865 HDFS Write: 4792 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 4.87 sec   HDFS Read: 11906 HDFS Write: 2534 SUCCESS
+Total MapReduce CPU Time Spent: 12 seconds 800 msec
+OK
+Time taken: 133.418 seconds
+hive> INSERT OVERWRITE LOCAL DIRECTORY '/user/root/outputs/export' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+    > SELECT name,COUNT(name) AS no_of_lines from episodeVI GROUP BY name ORDER BY no_of_lines;
+Query ID = root_20221122190147_0783f541-973f-4812-82d9-9f160593ed92
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0017, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0017/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0017
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-22 19:02:13,301 Stage-1 map = 0%,  reduce = 0%
+2022-11-22 19:02:25,633 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 8.61 sec
+2022-11-22 19:02:45,603 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 10.93 sec
+MapReduce Total cumulative CPU time: 10 seconds 930 msec
+Ended Job = job_1669135567576_0017
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1669135567576_0018, Tracking URL = http://f5350e5fcdfc:8088/proxy/application_1669135567576_0018/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1669135567576_0018
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-22 19:03:08,567 Stage-2 map = 0%,  reduce = 0%
+2022-11-22 19:03:14,838 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.66 sec
+2022-11-22 19:03:30,552 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 4.33 sec
+MapReduce Total cumulative CPU time: 4 seconds 330 msec
+Ended Job = job_1669135567576_0018
+Moving data to local directory /user/root/outputs/export
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 10.93 sec   HDFS Read: 55865 HDFS Write: 4792 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 4.33 sec   HDFS Read: 11928 HDFS Write: 2534 SUCCESS
+Total MapReduce CPU Time Spent: 15 seconds 260 msec
+OK
+Time taken: 111.466 seconds
